@@ -20,7 +20,7 @@ def upload():
             if not os.path.exists(file_path):
                 os.mkdir(file_path)
             upload_path = os.path.join(file_path, secure_filename(f.filename))  # 注意：没有的文件夹一定要先创建，不然会报错
-            if os.path.exists(file_path):
+            if os.path.exists(upload_path):
                 return jsonify({"status": "filename already exists"})
             else:
                 f.save(upload_path)
@@ -47,4 +47,4 @@ def get_file(filename):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
